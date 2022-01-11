@@ -14,11 +14,12 @@ const gameBoard = (() => {
     // console.log(boardArray);
     console.log("gameBoard function is working");
 
-    // boardArray.forEach(element => {
-    //     element.addEventListener("click", (e) =>{
-    //         console.log("You clicked Square ");
-    //     })
-    // })
+    boardArray.forEach(element => {
+        element.addEventListener("click", (e) =>{
+            console.log("You clicked Square ");
+        })
+    })
+
 
     return {boardArray};
 
@@ -26,7 +27,6 @@ const gameBoard = (() => {
 
 const game = (() =>{
     console.log("Game function is working");
-
     // const player1 = createPlayer("Player 1", "X");
     // const player2 = createPlayer("Player 2", "O");
 
