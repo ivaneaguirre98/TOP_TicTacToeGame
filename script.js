@@ -14,17 +14,18 @@ const gameBoard = (() => {
     // console.log(boardArray);
     // console.log("gameBoard function is working");
 
-    boardArray.forEach(element => {
+    const createBoard = boardArray.forEach(element => {
         element.addEventListener("click", (e, index) =>{
             //calls function that enters marker to the gameboard
             game.enterMarker(e.target);
+
+            game.checkGame(e.target);
 
             //calls function that switches player after marker is entered
             game.switchPlayer();
 
             game.removeSquare();
 
-            game.checkGame(e.target);
 
         }, {once:true}); //this limits event firing to one click. After click, it will no longer fire
     });
@@ -41,6 +42,8 @@ const game = (() =>{
     let activePlayer = player1;
     let roundWon = false;
     let gameLength = gameBoard.boardArray.length;
+
+    let gameOverScreen = document.querySelector(".gameOverScreen");
 
 
     function enterMarker(target){
@@ -99,16 +102,16 @@ const game = (() =>{
 
     function drawGame(){
         console.log("Its a draw");
-        const gameOverScreen = document.getElementById("gameOver");
-        gameOverScreen.style.display = "initial";
+        gameOverScreen.style.display = "flex";
 
     }
 
     function wonRound(){
         console.log("Round Won!");
-        const gameOverScreen = document.getElementById("gameOver");
-        gameOverScreen.style.display = "initial";
-    
+        gameOverScreen.style.display = "flex";
+
+        let winnerMessage = document.getElementById("gameWinnerAnnouce")
+        winnerMessage.innerHTML = activePlayer.name + " is the winner!";
     }
 
     return {
@@ -116,7 +119,7 @@ const game = (() =>{
         switchPlayer,
         enterMarker,
         checkGame,
-        removeSquare
+        removeSquare    
     }
 
 })();

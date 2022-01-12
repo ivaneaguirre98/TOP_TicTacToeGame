@@ -7,28 +7,35 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
+<body>      
 
-    <div class="gameOver" id="gameOver"></div>
+    <div class="gameOverScreen">
+        <div class="gameOverMessage">
+            <h1 id="gameWinnerAnnouce"></h1>
+            <button type="button" id="restartButton">Restart Button</button>
+        </div>
+    </div>
 
     <div class="headerDiv">
         <div class="title">
             <h1>Tic Tac Toe Game</h1>
         </div>
     </div>
-    
-    <div class="gameBoard">
-        <div class="box" data-attribute = "0" ></div>
-        <div class="box" data-attribute = "1" ></div>
-        <div class="box" data-attribute = "2" ></div>
-        <div class="box" data-attribute = "3" ></div>
-        <div class="box" data-attribute = "4" ></div>
-        <div class="box" data-attribute = "5"></div>
-        <div class="box" data-attribute = "6"></div>
-        <div class="box" data-attribute = "7"></div>
-        <div class="box" data-attribute = "8"></div>
-    </div>
 
+    <div class="boardContainer">
+        <div class="gameBoard">
+            <div class="box" data-attribute = "0" ></div>
+            <div class="box" data-attribute = "1" ></div>
+            <div class="box" data-attribute = "2" ></div>
+            <div class="box" data-attribute = "3" ></div>
+            <div class="box" data-attribute = "4" ></div>
+            <div class="box" data-attribute = "5"></div>
+            <div class="box" data-attribute = "6"></div>
+            <div class="box" data-attribute = "7"></div>
+            <div class="box" data-attribute = "8"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
+
 </body>
 </html>

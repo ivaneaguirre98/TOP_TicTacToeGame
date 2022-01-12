@@ -3,8 +3,16 @@
     margin: 0;
 }
 
+.boardContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.headerDiv{
+    padding-top: 5%;
+}
+
 .gameBoard{
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 33% 33% 33%;
@@ -26,11 +34,33 @@
     text-align: center;
 }
 
-.gameOver{
+.gameOverScreen{
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: black;
-    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.8);
     display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameWinnerAnnouce{
+    padding-bottom: 5%;
+}
+
+.gameOverMessage{
+    padding: 5% 5% 5% 5%;
+    background-color: rgba(247, 247, 247, 1);
+    border-radius: 10px;
+}
+
+#restartButton{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color:rgba(25, 107, 197, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5% 5% 5% 5%;
 }
