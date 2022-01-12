@@ -1,5 +1,5 @@
 const createPlayer = (name, marker) => {
-    console.log("createPlayer function is called");
+    // console.log("createPlayer function is called");
     return {name, marker};
 }
 
@@ -12,7 +12,7 @@ const gameBoard = (() => {
     //convert squares to an Array
     const boardArray = Array.from(squares);
     // console.log(boardArray);
-    console.log("gameBoard function is working");
+    // console.log("gameBoard function is working");
 
     boardArray.forEach(element => {
         element.addEventListener("click", (e, index) =>{
@@ -21,6 +21,8 @@ const gameBoard = (() => {
 
             //calls function that switches player after marker is entered
             game.switchPlayer();
+
+            game.removeSquare();
 
             game.checkGame(e.target);
 
@@ -32,11 +34,14 @@ const gameBoard = (() => {
 })();
 
 const game = (() =>{
-    console.log("Game function is working");
+    // console.log("Game function is working");
     const player1 = createPlayer("Player 1", "X");
     const player2 = createPlayer("Player 2", "O");
 
     let activePlayer = player1;
+    let roundWon = false;
+    let gameLength = gameBoard.boardArray.length;
+
 
     function enterMarker(target){
         target.innerHTML = activePlayer.marker;
@@ -54,7 +59,7 @@ const game = (() =>{
     }
 
     function checkGame(target){
-        console.log("CheckGameFunctionCalled")
+        // console.log("CheckGameFunctionCalled")
         const winningConditions  = [
             [0, 1, 2],
             [3, 4, 5],
@@ -77,18 +82,41 @@ const game = (() =>{
             }
 
             if(a === b && b === c){
-                console.log("Round Won!");
+                wonRound();
                 break;
             }
         }
+    }
 
+    function removeSquare(){
+        gameLength -= 1;
+
+        if(gameLength <= 0){
+            drawGame();
+        }
+        console.log(gameLength);
+    }
+
+    function drawGame(){
+        console.log("Its a draw");
+        const gameOverScreen = document.getElementById("gameOver");
+        gameOverScreen.style.display = "initial";
+
+    }
+
+    function wonRound(){
+        console.log("Round Won!");
+        const gameOverScreen = document.getElementById("gameOver");
+        gameOverScreen.style.display = "initial";
+    
     }
 
     return {
         activePlayer,
         switchPlayer,
         enterMarker,
-        checkGame
+        checkGame,
+        removeSquare
     }
 
 })();
