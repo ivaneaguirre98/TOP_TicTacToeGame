@@ -16,6 +16,9 @@ const gameBoard = (() => {
 
     const createBoard = boardArray.forEach(element => {
         element.addEventListener("click", (e, index) =>{
+
+            // game.checkBox(e);
+            
             //calls function that enters marker to the gameboard
             game.enterMarker(e.target);
 
@@ -27,10 +30,10 @@ const gameBoard = (() => {
             game.removeSquare();
 
 
-        }, {once:true}); //this limits event firing to one click. After click, it will no longer fire
+        }); //this limits event firing to one click. After click, it will no longer fire
     });
 
-    return {boardArray};
+    return {boardArray, createBoard};
 
 })();
 
@@ -44,6 +47,9 @@ const game = (() =>{
     let gameLength = gameBoard.boardArray.length;
 
     let gameOverScreen = document.querySelector(".gameOverScreen");
+
+    let resetButton = document.getElementById("restartButton");
+    resetButton.addEventListener("click", resetBoard);
 
 
     function enterMarker(target){
@@ -103,15 +109,29 @@ const game = (() =>{
     function drawGame(){
         console.log("Its a draw");
         gameOverScreen.style.display = "flex";
+        let drawMessage = document.getElementById("gameWinnerAnnouce");
+        drawMessage.innerHTML = "It was a Draw!";
 
     }
 
     function wonRound(){
         console.log("Round Won!");
         gameOverScreen.style.display = "flex";
-
         let winnerMessage = document.getElementById("gameWinnerAnnouce")
         winnerMessage.innerHTML = activePlayer.name + " is the winner!";
+    }
+
+    function resetBoard(){
+        for(let i = 0; i < 9; i++){
+            let square = gameBoard.boardArray[i];
+            square.innerHTML = "";
+            // console.log(square);
+        }
+
+        activePlayer = player1;
+
+        gameLength = 9;
+        gameOverScreen.style.display = "none";
     }
 
     return {
@@ -119,7 +139,8 @@ const game = (() =>{
         switchPlayer,
         enterMarker,
         checkGame,
-        removeSquare    
+        removeSquare,
+        resetBoard
     }
 
 })();
