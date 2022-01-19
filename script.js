@@ -15,22 +15,12 @@ const gameBoard = (() => {
     // console.log("gameBoard function is working");
 
     const createBoard = boardArray.forEach(element => {
-        element.addEventListener("click", (e, index) =>{
-
-            // game.checkBox(e);
-            
+        element.addEventListener("click", (e, index) =>{            
             //calls function that enters marker to the gameboard
             game.enterMarker(e.target);
 
-            game.checkGame(e.target);
 
-            //calls function that switches player after marker is entered
-            game.switchPlayer();
-
-            game.removeSquare();
-
-
-        }); //this limits event firing to one click. After click, it will no longer fire
+        });
     });
 
     return {boardArray, createBoard};
@@ -53,17 +43,23 @@ const game = (() =>{
 
 
     function enterMarker(target){
-        target.innerHTML = activePlayer.marker;
+        if(target.innerHTML === ""){
+            target.innerHTML = activePlayer.marker;
+            checkGame(target);
+        }
+        
     }
 
     function switchPlayer(){
         // console.log("Switch Player function");
         if(activePlayer === player1){
             activePlayer = player2;
+            removeSquare()
         }
 
         else{
             activePlayer = player1;
+            removeSquare();
         }
     }
 
@@ -95,6 +91,8 @@ const game = (() =>{
                 break;
             }
         }
+
+        switchPlayer();
     }
 
     function removeSquare(){
